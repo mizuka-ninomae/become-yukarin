@@ -3,6 +3,7 @@ extract low and high quality spectrogram data.
 """
 
 import argparse
+import glob
 import multiprocessing
 from pathlib import Path
 from pprint import pprint
@@ -21,8 +22,8 @@ base_voice_param = VoiceParam()
 base_acoustic_feature_param = AcousticFeatureParam()
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--input_directory', '-i', type=Path)
-parser.add_argument('--output_directory', '-o', type=Path)
+parser.add_argument('--input_glob', '-i')
+parser.add_argument('--output', '-o', type=Path)
 parser.add_argument('--sample_rate', type=int, default=base_voice_param.sample_rate)
 parser.add_argument('--top_db', type=float, default=base_voice_param.top_db)
 parser.add_argument('--pad_second', type=float, default=base_voice_param.pad_second)
@@ -74,8 +75,10 @@ def generate_file(path):
 def main():
     pprint(vars(arguments))
 
-    paths = list(sorted(arguments.input_directory.glob('*')))
-    arguments.output_directory.mkdir(exist_ok=True)
+    arguments.output.mkdir(exist_ok=True)
+#    save_arguments(arguments, arguments.output / 'arguments.json')
+
+    paths = [Path(p) for p in glob.glob(arguments.input_glob)]
 
     pool = multiprocessing.Pool()
     list(tqdm(pool.imap(generate_file, paths), total=len(paths)))
