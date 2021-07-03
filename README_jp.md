@@ -40,7 +40,7 @@ python scripts/extract_spectrogram_pair.py \
 ## 学習第二段階
 ### 学習用の設定ファイル`config2.json`を作る
 `sample_config2.json`の`input_glob`、`target_glob`、`indexes_glob`を変更すればとりあえず動きます。
-本家の`config.json`の`train_crop_size`の値は512ですが、うちの環境（GTX1060 メモリ6GB）では動かなかったので128に下げています。
+本家のconfig.jsonの`train_crop_size`の値は512ですが、うちの環境（GTX1060 メモリ6GB）では動かなかったので128に下げています。
 
 ### 学習する
 
