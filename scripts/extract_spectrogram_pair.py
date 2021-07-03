@@ -36,7 +36,7 @@ arguments = parser.parse_args()
 
 
 def generate_file(path):
-    out = Path(arguments.output_directory, path.stem + '.npy')
+    out = Path(arguments.output, path.stem + '.npy')
     if out.exists() and not arguments.enable_overwrite:
         return
 
