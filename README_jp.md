@@ -36,6 +36,7 @@ python scripts/extract_spectrogram_pair.py \
     -o './target_sr_feature/' \
     --sample_rate 24000
 ```
+
 ## 学習第二段階
 ### 学習用の設定ファイル`config2.json`を作る
 `sample_config2.json`の`input_glob`、`target_glob`、`indexes_glob`を変更すればとりあえず動きます。
